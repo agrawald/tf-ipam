@@ -1,0 +1,28 @@
+version: '3.4'
+services:
+  netbox:
+    image: &NetboxImage netboxcommunity/netbox:${VERSION-latest-ldap}
+    ports:
+      - 8001:8080      
+    environment: 
+      REMOTE_AUTH_ENABLED: "true"
+      REMOTE_AUTH_BACKEND: 'netbox.authentication.LDAPBackend'
+      AUTH_LDAP_SERVER_URI: "ldap://tf-ipam_openldap_1:1389"
+      AUTH_LDAP_BIND_DN: "cn=netbox,ou=users,dc=example,dc=org"
+      AUTH_LDAP_BIND_PASSWORD: "password2"
+      AUTH_LDAP_USER_SEARCH_BASEDN: "ou=users,dc=example,dc=org"
+      AUTH_LDAP_GROUP_SEARCH_BASEDN: "cn=readers,dc=example,dc=org"
+      # AUTH_LDAP_REQUIRE_GROUP_DN: "ou=users,dc=example,dc=org"
+      AUTH_LDAP_IS_ADMIN_DN: "cn=netbox,ou=users,dc=example,dc=org"
+      AUTH_LDAP_IS_SUPERUSER_DN: "cn=netbox,ou=users,dc=example,dc=org"
+      AUTH_LDAP_USER_SEARCH_ATTR: "uid"
+      AUTH_LDAP_GROUP_SEARCH_CLASS: "groupOfUniqueNames"
+      AUTH_LDAP_GROUP_TYPE: "GroupOfUniqueNamesType"
+      AUTH_LDAP_ATTR_LASTNAME: "sn"
+      AUTH_LDAP_ATTR_FIRSTNAME: "givenName"
+      LDAP_IGNORE_CERT_ERRORS: "true"
+      PREFER_IPV4: "true"
+      LOGLEVEL: "DEBUG"
+
+  netbox-worker:
+    image: *NetboxImage
