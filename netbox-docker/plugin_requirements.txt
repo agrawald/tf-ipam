@@ -1,0 +1,1 @@
+-e /opt/netbox/netbox/netbox_api_token_generator
