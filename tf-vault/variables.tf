@@ -1,3 +1,3 @@
 variable "vault_token" {
-  default = "s.ZVOf2YQuJXsbLzGdU5VfPbKO"
+  default = "s.ZVOf2YQuJXsbLzGdU5VfPbKO" //admin
 }
