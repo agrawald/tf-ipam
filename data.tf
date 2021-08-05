@@ -1,6 +1,8 @@
+
 data "vault_generic_secret" "netbox" {
-  path = "openldap/static-cred/netbox"
+  path = "openldap/creds/dynamic-role"
 }
+
 
 data "http" "netbox_api_token" {
   url = "http://localhost:8001/api/plugins/token/token"

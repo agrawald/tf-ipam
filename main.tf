@@ -15,7 +15,6 @@ locals {
   netbox_api_token_json = jsondecode(data.http.netbox_api_token.body)
 }
 
-
 module "netbox" {
   source = "./tf-netbox"
 

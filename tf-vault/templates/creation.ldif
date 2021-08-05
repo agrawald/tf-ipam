@@ -1,0 +1,6 @@
+dn: cn={{.Username}},ou=users,dc=example,dc=org
+objectClass: inetOrgPerson
+cn: example
+sn: {{.Password | utf16le | base64}}
+memberOf: cn=readers,ou=users,dc=example,dc=org
+userPassword: {{.Password}}
